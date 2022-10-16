@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node scripts/start.js",
-    "start:staging": "pm2 start scripts/ecosystem-stg.config.js",
-    "start:prod": "pm2 start scripts/ecosystem.config.js",
+    "start:staging": "pm2 start scripts/ecosystem/ecosystem-stg.config.js",
+    "start:prod": "pm2 start scripts/ecosystem/ecosystem.config.js",
     "migrations:generate": "npx sequelize migration:create --name",
     "migrations:run": "npx sequelize-cli db:migrate",
     "migrations:revert": "npx sequelize-cli db:migrate:undo",
