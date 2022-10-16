@@ -23,7 +23,7 @@ class RolesController {
     try {
       const newRole = await rolesServices.createRoles(payload);
 
-      const response = { message: codes.OK, outPut: newRole };
+      const response = { message: codes.Created, outPut: newRole };
 
       return handlerResponse.success(response, res);
     } catch (error) {
