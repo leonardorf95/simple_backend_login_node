@@ -1,6 +1,5 @@
-require('babel-register');
 const Sequelize = require('sequelize');
-const configuration = rquire('./configuration.js');
+const configuration = require('./configuration');
 const initialModels = require('../../../database/models');
 
 const sequelize = new Sequelize(
