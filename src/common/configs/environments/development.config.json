@@ -17,5 +17,11 @@
   },
   "JwtSecret": {
     "secret": "THE BEST DEVELOPER"
+  },
+  "Server": {
+    "url": "http://localhost:8000"
+  },
+  "LandingAdministrador": {
+    "url": "http://localhost:3000"
   }
 }
