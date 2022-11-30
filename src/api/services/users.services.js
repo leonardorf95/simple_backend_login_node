@@ -14,7 +14,7 @@ const {
 const nodemailerServices = require('../../common/services/nodemailer.services');
 const configServer = require(path.join(
   process.cwd(),
-  `/src/common/config/environments/${env}.config.json`
+  `/src/common/configs/environments/${env}.config.json`
 )).Server;
 
 class UsersServices {
