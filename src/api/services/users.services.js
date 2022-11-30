@@ -125,6 +125,57 @@ class UsersServices {
     }
   }
 
+  async getAllUsers(queries) {
+    try {
+      const {
+        limit,
+        offset,
+        searchRole,
+        field,
+        ordering,
+        id,
+        name,
+        email,
+        isVerified,
+      } = queries;
+      let where = {};
+      const whereRole = searchRole ? { name: searchRole } : {};
+
+      const { rows, count: total } = await this.#_users.findAndCountAll({
+        where,
+        order: [[`${field}`, `${ordering}`]],
+        attributes: [
+          'id',
+          'name',
+          'firstName',
+          'email',
+          'phoneNumber',
+          'isVerified',
+        ],
+        include: [
+          {
+            model: models.roles,
+            as: 'role',
+            required: true,
+            attributes: ['id', 'name'],
+            where: whereRole,
+          },
+        ],
+        limit,
+        offset,
+      });
+
+      let pages = 1;
+
+      if (limit) pages = Math.ceil(total / limit);
+
+      return { rows, pages, total };
+    } catch (exception) {
+      error('Error en UsersService.getAllUsers: ', exception);
+      throw exception;
+    }
+  }
+
   async updateUser(user, payload) {
     try {
       return await user.update(payload);
