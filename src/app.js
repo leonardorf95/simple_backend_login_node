@@ -2,8 +2,11 @@ const env = process.env.NODE_ENV || 'development';
 
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session');
 
 const router = require('./api/router');
+const passport = require('./api/session');
+const authMiddleware = require('./api/middleware/auth.middleware');
 
 const server = express();
 
@@ -17,6 +20,34 @@ server.use(
 );
 
 server.use(cors());
+
+server.use(
+  session({
+    secret: 'HE BEST DEVELOPER',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+server.use(passport.initialize());
+
+server.use(passport.session());
+
+server.use(async (req, res, next) => {
+  if (!req.headers.authorization && req.url.indexOf('/app') === -1)
+    return next();
+
+  return await authMiddleware(req, res, next);
+});
+
+server.use((req, res, next) => {
+  if (!req.headers.authorization && req.url.indexOf('/app') === -1)
+    return next();
+
+  return passport.authenticate('jwt', {
+    session: false,
+  })(req, res, next);
+});
 
 router(server);
 

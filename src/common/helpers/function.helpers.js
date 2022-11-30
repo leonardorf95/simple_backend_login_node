@@ -1,3 +1,9 @@
+const moment = require('moment-timezone');
+
+exports.currentMxDate = () => {
+  return moment.tz('America/Mexico_City');
+};
+
 exports.generateRandomPassword = () => {
   const chars =
     'abcdefghijklmnopqrstubwsyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890|!.$%&';
@@ -19,4 +25,30 @@ exports.validateEmail = (inputText) => {
 exports.validatePhoneNumber = (phone) => {
   const phoneRegexp = /^[0-9]{10}$/;
   return phoneRegexp.test(phone);
+};
+
+exports.roundOut = (num, decimals = 2) => {
+  return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
+};
+
+exports.isNumeric = (value) => {
+  return !isNaN(parseFloat(value)) && isFinite(value);
+};
+
+exports.formatMoneyNumber = (value) => {
+  const options = {
+    style: 'currency',
+    currency: 'USD',
+  };
+
+  return new Intl.NumberFormat('en-US', options).format(value);
+};
+
+exports.setSecondsDate = (seconds) => {
+  return moment.tz('America/Mexico_City').add(seconds, 's');
+};
+
+exports.capitalize = (value) => {
+  const textLower = value.toLowerCase();
+  return `${textLower.charAt(0).toUpperCase()}${textLower.slice(1)}`;
 };

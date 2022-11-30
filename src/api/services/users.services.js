@@ -129,14 +129,16 @@ class UsersServices {
     try {
       return await user.update(payload);
     } catch (exception) {
-      logger.error('Error en UsersService.updateUser: ', exception);
+      error('Error en UsersService.updateUser: ', exception);
       throw exception;
     }
   }
 
   async activeUser(tokenActivation) {
     try {
-      const findUser = await users.findOne({ where: { tokenActivation } });
+      const findUser = await this.#_users.findOne({
+        where: { tokenActivation },
+      });
 
       if (!findUser) {
         const error = new Error();
@@ -153,25 +155,25 @@ class UsersServices {
 
       return await findUser.save();
     } catch (error) {
-      logger.error('Error en UsersService.activeUser: ', error);
+      error('Error en UsersService.activeUser: ', error);
       throw error;
     }
   }
 
   async getValidUser(email) {
     try {
-      return await users.findOne({
+      return await this.#_users.findOne({
         where: { email, isVerified: true },
       });
     } catch (error) {
-      logger.error('Error en UsersService.getValidUser: ', error);
+      error('Error en UsersService.getValidUser: ', error);
       throw error;
     }
   }
 
   async generateNewToken(email) {
     try {
-      const findUser = await users.findOne({ where: { email } });
+      const findUser = await this.#_users.findOne({ where: { email } });
 
       if (!findUser) {
         const errorException = new Error();
@@ -200,14 +202,16 @@ class UsersServices {
 
       await sendgridApi.send(options);
     } catch (error) {
-      logger.error('Error en UsersService.generateNewToken: ', error);
+      error('Error en UsersService.generateNewToken: ', error);
       throw error;
     }
   }
 
   async updatePassword(tokenActivation, password) {
     try {
-      const findUser = await users.findOne({ where: { tokenActivation } });
+      const findUser = await this.#_users.findOne({
+        where: { tokenActivation },
+      });
 
       if (!findUser) {
         const error = new Error();
@@ -224,7 +228,7 @@ class UsersServices {
 
       return await findUser.save();
     } catch (error) {
-      logger.error('Error en UsersService.updatePassword: ', error);
+      error('Error en UsersService.updatePassword: ', error);
       throw error;
     }
   }
