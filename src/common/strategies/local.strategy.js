@@ -49,6 +49,7 @@ module.exports = () => {
         req.user = user;
 
         const sessionData = {
+          statusCode: 200,
           id: user.id,
           fullName: `${capitalize(user.name)} ${capitalize(user.firstName)}`,
           email: user.email,
