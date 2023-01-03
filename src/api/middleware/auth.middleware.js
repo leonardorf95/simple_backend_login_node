@@ -12,9 +12,10 @@ const authMiddleware = async (req, res, next) => {
     let session;
 
     if (req.headers.authorization) {
-      const decode = jwt.decode(
+      const decode = jwt.verify(
         req.headers.authorization.replace('Bearer ', ''),
-        configJwt.secret
+        configJwt.secret,
+        { algorithm: 'HS512' }
       );
 
       session = await sessionsServices.getSessionUser(decode.id);

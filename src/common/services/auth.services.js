@@ -38,7 +38,11 @@ class AuthService {
     const expiresIn = 60 * 60 * 24;
 
     return {
-      access_token: jwt.sign(payload, configJwt.secret, { expiresIn }),
+      access_token: jwt.sign(payload, configJwt.secret, {
+        expiresIn,
+        algorithm: 'HS512',
+        allowInsecureKeySizes: false,
+      }),
       expiresIn,
     };
   }
