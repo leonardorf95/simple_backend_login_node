@@ -23,7 +23,7 @@ server.use(cors());
 
 server.use(
   session({
-    secret: 'HE BEST DEVELOPER',
+    secret: 'THE BEST DEVELOPER',
     resave: true,
     saveUninitialized: true,
   })
