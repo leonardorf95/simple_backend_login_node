@@ -18,7 +18,7 @@ class NodemailerServices {
       });
 
       await transporter.sendMail({
-        from: 'development@devs.mx', // sender address
+        from: 'development@correo.com', // sender address
         to: payload.email, // list of receivers
         subject: payload.subject, // Subject line
         text: payload.text, // plain text body
