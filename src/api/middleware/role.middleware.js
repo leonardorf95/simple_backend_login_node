@@ -13,15 +13,6 @@ class RoleMiddleware {
         '/api/users/active-account/',
         '/api/users/generate-token/email',
         '/api/users/update-password/token',
-        '/api/catalogs/get-postal-code/',
-        '/api/payment/pre-calculated-payment',
-        '/api/payment/pay',
-        '/api/payment/card-tokenization',
-        '/api/catalogs/test-generate-date',
-        '/api/catalogs/test-generate-deposits',
-        '/api/orders/get-order-token',
-        '/api/payment/pay-stp',
-        '/api/payment/webhook-pay',
       ];
 
       if (urlsAllow.includes(req.originalUrl)) return next();
