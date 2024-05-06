@@ -104,7 +104,7 @@ class UsersServices {
       const url = `${configServer.url}/api/users/activate-account/${user.tokenActivation}`;
       // const payloadEmail = {
       //   to: user.email,
-      //   subject: 'Bienvenidoa a Developers mx',
+      //   subject: 'Bienvenidoa a Developers',
       //   text: `Para activar tu cuenta haz clic en el siguiente enlace <a href="${url}">Clic Aqui</a> `,
       // };
       // await nodemailerServices.sendEmail(payloadEmail);
