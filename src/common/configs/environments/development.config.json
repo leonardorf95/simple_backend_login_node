@@ -2,9 +2,9 @@
   "Database": {
     "database": "backend",
     "username": "postgres",
-    "password": "Admin$01",
+    "password": "",
     "connection": {
-      "host": "192.168.0.105",
+      "host": "",
       "port": 5432,
       "dialect": "postgres",
       "pool": {
